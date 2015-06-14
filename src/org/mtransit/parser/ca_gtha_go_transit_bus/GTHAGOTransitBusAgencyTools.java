@@ -103,370 +103,367 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
-		int directionId = gTrip.direction_id;
-		String stationName = cleanTripHeadsign(gTrip.trip_headsign);
 		if (mRoute.id == 11l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
 		} else if (mRoute.id == 12l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 15l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 16l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 18l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 19l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 20l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 21l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 25l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 27l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 29l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 30l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 31l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 32l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 33l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 34l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 35l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 36l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 37l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 38l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 39l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 40l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 45l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 46l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 47l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 48l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 51l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 52l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 54l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
 		} else if (mRoute.id == 60l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 61l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 63l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 65l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 66l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 67l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 68l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 70l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 71l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 81l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 88l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
 			}
 		} else if (mRoute.id == 90l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
 		} else if (mRoute.id == 91l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
 		} else if (mRoute.id == 92l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
 		} else if (mRoute.id == 93l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
 		} else if (mRoute.id == 96l) {
-			if (directionId == 0) {
+			if (gTrip.direction_id == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
-			} else if (directionId == 1) {
+			} else if (gTrip.direction_id == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
 		} else {
-			mTrip.setHeadsignString(stationName, directionId);
 			System.out.println("Unexpected trip " + gTrip);
 			System.exit(-1);
 		}
