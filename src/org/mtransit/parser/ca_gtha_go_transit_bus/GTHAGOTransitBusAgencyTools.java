@@ -38,7 +38,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void start(String[] args) {
-		System.out.printf("\nGenerating GO Transit bus data...\n");
+		System.out.printf("\nGenerating GO Transit bus data...");
 		long start = System.currentTimeMillis();
 		this.serviceIds = extractUsefulServiceIds(args, this);
 		super.start(args);
@@ -480,7 +480,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern VIA = Pattern.compile("(^|\\s){1}(via)($|\\s){1}", Pattern.CASE_INSENSITIVE);
 	private static final String VIA_REPLACEMENT = " ";
 
-	private static final Pattern POINT = Pattern.compile("((^|\\W){1}(st|ave|blvd|Hwy|rd|dr)\\.(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern POINT = Pattern.compile("((^|\\W){1}(st|ave|blvd|hwy|rd|dr)\\.(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String POINT_REPLACEMENT = "$2$3$4";
 
 	private static final Pattern DIRECTION = Pattern.compile("((^|\\W){1}(s|n|e|w)\\.(\\W|$){1})", Pattern.CASE_INSENSITIVE);
