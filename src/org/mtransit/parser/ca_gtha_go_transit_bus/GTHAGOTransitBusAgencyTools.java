@@ -90,7 +90,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
-		if (mRoute.id == 11l) {
+		if (mRoute.getId() == 11l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -98,7 +98,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 12l) {
+		} else if (mRoute.getId() == 12l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
@@ -106,7 +106,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
 			}
-		} else if (mRoute.id == 15l) {
+		} else if (mRoute.getId() == 15l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -114,7 +114,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 16l) {
+		} else if (mRoute.getId() == 16l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -122,7 +122,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 18l) {
+		} else if (mRoute.getId() == 18l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -130,7 +130,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 19l) {
+		} else if (mRoute.getId() == 19l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -138,7 +138,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 20l) {
+		} else if (mRoute.getId() == 20l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -146,7 +146,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 21l) {
+		} else if (mRoute.getId() == 21l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -154,7 +154,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 25l) {
+		} else if (mRoute.getId() == 25l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -162,7 +162,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 27l) {
+		} else if (mRoute.getId() == 27l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -170,7 +170,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 29l) {
+		} else if (mRoute.getId() == 29l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -178,7 +178,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 30l) {
+		} else if (mRoute.getId() == 30l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -186,7 +186,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 31l) {
+		} else if (mRoute.getId() == 31l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -194,7 +194,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 32l) {
+		} else if (mRoute.getId() == 32l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -202,7 +202,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 33l) {
+		} else if (mRoute.getId() == 33l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -210,7 +210,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 34l) {
+		} else if (mRoute.getId() == 34l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -218,7 +218,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 35l) {
+		} else if (mRoute.getId() == 35l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -226,7 +226,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 36l) {
+		} else if (mRoute.getId() == 36l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -234,7 +234,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 37l) {
+		} else if (mRoute.getId() == 37l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -242,7 +242,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 38l) {
+		} else if (mRoute.getId() == 38l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -250,7 +250,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 39l) {
+		} else if (mRoute.getId() == 39l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -258,7 +258,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 40l) {
+		} else if (mRoute.getId() == 40l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -266,7 +266,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 45l) {
+		} else if (mRoute.getId() == 45l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -274,7 +274,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 46l) {
+		} else if (mRoute.getId() == 46l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -282,7 +282,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 47l) {
+		} else if (mRoute.getId() == 47l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -290,7 +290,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 48l) {
+		} else if (mRoute.getId() == 48l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -298,7 +298,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 51l) {
+		} else if (mRoute.getId() == 51l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -306,7 +306,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 52l) {
+		} else if (mRoute.getId() == 52l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -314,7 +314,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 54l) {
+		} else if (mRoute.getId() == 54l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -322,7 +322,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 60l) {
+		} else if (mRoute.getId() == 60l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -330,7 +330,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 61l) {
+		} else if (mRoute.getId() == 61l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -338,7 +338,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 63l) {
+		} else if (mRoute.getId() == 63l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -346,7 +346,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 65l) {
+		} else if (mRoute.getId() == 65l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -354,7 +354,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 66l) {
+		} else if (mRoute.getId() == 66l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -362,7 +362,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 67l) {
+		} else if (mRoute.getId() == 67l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -370,7 +370,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 68l) {
+		} else if (mRoute.getId() == 68l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -378,7 +378,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 70l) {
+		} else if (mRoute.getId() == 70l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -386,7 +386,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 71l) {
+		} else if (mRoute.getId() == 71l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -394,7 +394,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 81l) {
+		} else if (mRoute.getId() == 81l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -402,7 +402,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 88l) {
+		} else if (mRoute.getId() == 88l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH);
 				return;
@@ -410,7 +410,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH);
 				return;
 			}
-		} else if (mRoute.id == 90l) {
+		} else if (mRoute.getId() == 90l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -418,7 +418,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 91l) {
+		} else if (mRoute.getId() == 91l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -426,7 +426,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 92l) {
+		} else if (mRoute.getId() == 92l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -434,7 +434,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 93l) {
+		} else if (mRoute.getId() == 93l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -442,7 +442,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.EAST);
 				return;
 			}
-		} else if (mRoute.id == 96l) {
+		} else if (mRoute.getId() == 96l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST);
 				return;
@@ -471,8 +471,6 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
-	private static final Pattern AT = Pattern.compile("( at | @ )", Pattern.CASE_INSENSITIVE);
-	private static final String AT_REPLACEMENT = " / ";
 
 	private static final Pattern GO = Pattern.compile("(^|\\s){1}(go)($|\\s){1}", Pattern.CASE_INSENSITIVE);
 	private static final String GO_REPLACEMENT = " ";
@@ -488,7 +486,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String cleanStopName(String gStopName) {
-		gStopName = AT.matcher(gStopName).replaceAll(AT_REPLACEMENT);
+		gStopName = CleanUtils.CLEAN_AT.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		gStopName = VIA.matcher(gStopName).replaceAll(VIA_REPLACEMENT);
 		gStopName = GO.matcher(gStopName).replaceAll(GO_REPLACEMENT);
 		gStopName = POINT.matcher(gStopName).replaceAll(POINT_REPLACEMENT);
