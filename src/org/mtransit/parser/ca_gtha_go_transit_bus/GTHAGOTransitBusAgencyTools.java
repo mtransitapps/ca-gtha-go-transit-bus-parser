@@ -110,6 +110,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String BRAMPTON = "Brampton";
 	private static final String BURLINGTON_CARPOOL = "Burlington Carpool";
 	private static final String COOKSVILLE = "Cooksville";
+	private static final String EAST_GWILLIMBURY = "East Gwillimbury";
 	private static final String FINCH = "Finch";
 	private static final String GUELPH_CENTRAL = "Guelph Central";
 	private static final String HAMILTON = "Hamilton";
@@ -221,7 +222,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(KING_CITY, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 65l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(EAST_GWILLIMBURY, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 66l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId()); return true; }
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId()); return true; }
