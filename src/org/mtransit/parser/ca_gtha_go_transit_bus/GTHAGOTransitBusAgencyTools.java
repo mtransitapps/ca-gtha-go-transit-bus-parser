@@ -39,7 +39,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	public void start(String[] args) {
 		System.out.printf("\nGenerating GO Transit bus data...");
 		long start = System.currentTimeMillis();
-		this.serviceIds = extractUsefulServiceIds(args, this);
+		this.serviceIds = extractUsefulServiceIds(args, this, true);
 		super.start(args);
 		System.out.printf("\nGenerating GO Transit bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
@@ -282,6 +282,10 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = UNIVERSITY.matcher(tripHeadsign).replaceAll(UNIVERSITY_REPLACEMENT);
 		tripHeadsign = BUS_TERMINAL.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = CLEAN_DASH.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
+		int indexOfDash = tripHeadsign.indexOf("- ");
+		if (indexOfDash >= 0) {
+			tripHeadsign = tripHeadsign.substring(0, indexOfDash);
+		}
 		tripHeadsign = CleanUtils.CLEAN_AND.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AND_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_AT.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
