@@ -93,6 +93,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			switch (rsn) {
 			// @formatter:off
 			case 11: return "98002e"; // St. Catharines / Niagara on the Lake
+			case 70: return "794500"; //
 			// @formatter:on
 			}
 			System.out.printf("\nUnexpected route color for %s!\n", gRoute);
