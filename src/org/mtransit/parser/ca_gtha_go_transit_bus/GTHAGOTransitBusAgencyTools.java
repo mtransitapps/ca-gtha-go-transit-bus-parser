@@ -125,6 +125,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String OAKVILLE = "Oakville";
 	private static final String ORANGEVILLE = "Orangeville";
 	private static final String OSHAWA = "Oshawa";
+	private static final String RICHMOND_HILL_CENTER = "Richmond Hl Ctr";
 	private static final String SCARBORO = "Scarboro";
 	private static final String STREETSVILLE = "Streetsville";
 	private static final String U_OF_GUELPH = UNIVERSITY_SHORT + " of Guelph";
@@ -196,6 +197,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BOLTON, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 40l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(RICHMOND_HILL_CENTER, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 45l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(STREETSVILLE, mTrip.getHeadsignId()); return true; }
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
