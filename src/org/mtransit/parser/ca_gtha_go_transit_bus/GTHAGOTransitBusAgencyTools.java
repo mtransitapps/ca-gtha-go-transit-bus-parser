@@ -270,6 +270,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern STATION = Pattern.compile("((^|\\W){1}(station|sta|stn)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String STATION_REPLACEMENT = "$2$4";
 
+	private static final Pattern PARK_AND_RIDE = Pattern.compile("((^|\\W){1}(park & ride)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String PARK_AND_RIDE_REPLACEMENT = "$2P&R$4";
+
 	private static final Pattern UNIVERSITY = Pattern.compile("((^|\\W){1}(university)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String UNIVERSITY_REPLACEMENT = "$2" + UNIVERSITY_SHORT + "$4";
 
@@ -282,6 +285,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(STARTS_WITH_RSN_REPLACEMENT);
 		tripHeadsign = GO.matcher(tripHeadsign).replaceAll(GO_REPLACEMENT);
 		tripHeadsign = STATION.matcher(tripHeadsign).replaceAll(STATION_REPLACEMENT);
+		tripHeadsign = PARK_AND_RIDE.matcher(tripHeadsign).replaceAll(PARK_AND_RIDE_REPLACEMENT);
 		tripHeadsign = UNIVERSITY.matcher(tripHeadsign).replaceAll(UNIVERSITY_REPLACEMENT);
 		tripHeadsign = BUS_TERMINAL.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = CLEAN_DASH.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
