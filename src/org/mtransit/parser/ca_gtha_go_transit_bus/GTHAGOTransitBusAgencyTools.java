@@ -219,6 +219,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 54l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(MT_JOY, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 60l) {
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString("Canada Wonderland", mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 61l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 63l) {
