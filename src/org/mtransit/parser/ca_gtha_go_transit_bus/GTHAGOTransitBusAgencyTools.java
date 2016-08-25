@@ -156,6 +156,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		if (mTrip.getRouteId() == 12l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(NIAGARA_FALLS, mTrip.getHeadsignId()); return true; }
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BURLINGTON_CARPOOL, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 15l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString("Brantford", mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 16l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 18l) {
