@@ -228,6 +228,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString("Gormley", mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 63l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
 			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(KING_CITY, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 65l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
