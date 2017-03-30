@@ -105,29 +105,32 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	private static final String UNIVERSITY_SHORT = "U";
 
+	private static final String ALDERSHOT = "Aldershot";
 	private static final String BARRIE = "Barrie";
 	private static final String BEAVERTON = "Beaverton";
 	private static final String BOLTON = "Bolton";
 	private static final String BRAMPTON = "Brampton";
+	private static final String BRANTFORD = "Brantford";
 	private static final String BURLINGTON_CARPOOL = "Burlington Carpool";
-	private static final String COOKSVILLE = "Cooksville";
 	private static final String EAST_GWILLIMBURY = "East Gwillimbury";
 	private static final String FINCH = "Finch";
+	private static final String GORMLEY = "Gormley";
 	private static final String GUELPH_CENTRAL = "Guelph Central";
 	private static final String HAMILTON = "Hamilton";
 	private static final String KING_CITY = "King City";
-	private static final String KITCHENER = "Kitchener";
 	private static final String MILTON = "Milton";
 	private static final String MT_JOY = "Mt Joy";
 	private static final String NEWCASTLE = "Newcastle";
 	private static final String NEWMARKET = "Newmarket";
 	private static final String NIAGARA_FALLS = "Niagara Falls";
 	private static final String OAKVILLE = "Oakville";
-	private static final String ORANGEVILLE = "Orangeville";
 	private static final String OSHAWA = "Oshawa";
+	private static final String PICKERING = "Pickering";
 	private static final String RICHMOND_HILL_CENTER = "Richmond Hl Ctr";
 	private static final String SCARBORO = "Scarboro";
+	private static final String SQUARE_ONE = "Sq One";
 	private static final String STREETSVILLE = "Streetsville";
+	private static final String TRINITY_COMMON = "Trinity Common";
 	private static final String U_OF_GUELPH = UNIVERSITY_SHORT + " of Guelph";
 	private static final String U_OF_WATERLOO = UNIVERSITY_SHORT + " Of Waterloo";
 	private static final String UNION = "Union";
@@ -141,12 +144,6 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String YORKDALE = "Yorkdale";
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
-		// @formatter:off
-		if (mRoute.getId() == 11l) {
-			if (gTrip.getDirectionId() == 0) { mTrip.setHeadsignString("Niagara-On-The-Lk", gTrip.getDirectionId()); return ; }
-			if (gTrip.getDirectionId() == 1) { mTrip.setHeadsignString("St. Catharines", gTrip.getDirectionId()); return; }
-		}
-		// @formatter:on
 		mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), gTrip.getDirectionId());
 	}
 
@@ -154,116 +151,108 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
 		// @formatter:off
 		if (mTrip.getRouteId() == 12l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(NIAGARA_FALLS, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BURLINGTON_CARPOOL, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(BURLINGTON_CARPOOL, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(NIAGARA_FALLS, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 15l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString("Brantford", mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString("Aldershot", mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 16l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(ALDERSHOT, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BRANTFORD, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 18l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
 		} else if (mTrip.getRouteId() == 19l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(OAKVILLE, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 21l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 25l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(U_OF_WATERLOO, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 27l) {
-			if (mTrip.getHeadsignId() == 0) {  mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId()); return true; } 
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 29l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(GUELPH_CENTRAL, mTrip.getHeadsignId()); return true; } 
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(COOKSVILLE, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 30l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(KITCHENER, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 31l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(U_OF_GUELPH, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 32l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(BRAMPTON, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 33l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(U_OF_GUELPH, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 36l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(BRAMPTON, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 37l) {
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(ORANGEVILLE, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 38l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BOLTON, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 40l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(RICHMOND_HILL_CENTER, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 45l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(STREETSVILLE, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 46l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(OAKVILLE, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 47l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 48l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(U_OF_GUELPH, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 51l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString("Pickering", mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 52l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 54l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(MT_JOY, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 60l) {
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString("Canada Wonderland", mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 61l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString("Gormley", mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 63l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(KING_CITY, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 65l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(EAST_GWILLIMBURY, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 66l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 67l) {
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(WOODBINE_404, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 68l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BARRIE, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 70l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNIONVILLE, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UXBRIDGE, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 71l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UXBRIDGE, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 81l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(WHITBY, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BEAVERTON, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 90l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(NEWCASTLE, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 91l) {
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(NEWCASTLE, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 92l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 93l) {
-			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(SCARBORO, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UOIT_D_C, mTrip.getHeadsignId()); return true; }
-		} else if (mTrip.getRouteId() == 96l) {
 			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); return true; }
-			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(SQUARE_ONE, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 21l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 25l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(SQUARE_ONE, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(U_OF_WATERLOO, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 27l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); return true; } 
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 29l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(SQUARE_ONE, mTrip.getHeadsignId()); return true; } 
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(GUELPH_CENTRAL, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 31l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(U_OF_GUELPH, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 32l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(TRINITY_COMMON, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 33l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(U_OF_GUELPH, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 36l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(BRAMPTON, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 38l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(BOLTON, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); return true; } // Malton
+		} else if (mTrip.getRouteId() == 40l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(RICHMOND_HILL_CENTER, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 45l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(STREETSVILLE, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 46l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(OAKVILLE, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 47l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U , mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 48l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(U_OF_GUELPH, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 51l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(PICKERING, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 52l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 54l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(MT_JOY, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 61l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(GORMLEY, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 63l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(KING_CITY, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 65l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(EAST_GWILLIMBURY, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 66l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 67l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(WOODBINE_404, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 68l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(BARRIE, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 70l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UXBRIDGE, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNIONVILLE, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 71l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UXBRIDGE, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 81l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(BEAVERTON, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(WHITBY, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 90l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(NEWCASTLE, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 91l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(NEWCASTLE, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 92l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 93l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(UOIT_D_C, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(SCARBORO, mTrip.getHeadsignId()); return true; }
+		} else if (mTrip.getRouteId() == 96l) {
+			if (mTrip.getHeadsignId() == 0) { mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId()); return true; }
+			if (mTrip.getHeadsignId() == 1) { mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); return true; }
 		}
 		// @formatter:on
 		System.out.printf("\n%s: Unexpected trips to merge: %s AND %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
