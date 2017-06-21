@@ -358,11 +358,12 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(TRINITY_COMMON, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 33l) {
+		} else if (mTrip.getRouteId() == 33L) {
 			if (Arrays.asList( //
 					"A " + YORK_MILLS, //
 					"D " + BRAMPTON, //
 					"E " + YORK_MILLS, //
+					MOUNT_PLEASANT, // TODO really?
 					YORK_MILLS //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId());
@@ -690,7 +691,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		System.out.printf("\n%s: Unexpected trips to merge: %s AND %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
+		System.out.printf("\n%s: Unexpected trips to merge: %s & %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
 		System.exit(-1);
 		return false;
 	}
