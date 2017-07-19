@@ -676,6 +676,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + OSHAWA, //
 					"C " + AJAX, //
 					"D " + OSHAWA, //
+					"SPECIAL", //
 					OSHAWA //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId());
@@ -685,6 +686,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + FINCH, //
 					"C " + FINCH, //
 					"D " + FINCH, //
+					"SPECIAL", //
 					FINCH //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); // OSHAWA
