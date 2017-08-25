@@ -98,6 +98,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			case 70: return "794500"; //
 			// @formatter:on
 			}
+			if (isGoodEnoughAccepted()) {
+				return null;
+			}
 			System.out.printf("\nUnexpected route color for %s!\n", gRoute);
 			System.exit(-1);
 			return null;
@@ -121,9 +124,11 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String BRAMALEA = "Bramalea";
 	private static final String BRAMPTON = "Brampton";
 	private static final String BRANTFORD = "Brantford";
+	private static final String BRONTE_CARPOOL = "Bronte Carpool";
 	private static final String BURLINGTON = "Burlington";
 	private static final String BURLINGTON_CARPOOL = BURLINGTON + " Carpool";
 	private static final String CENTENNIAL = "Centennial";
+	private static final String CENTENNIAL_COLLEGE = CENTENNIAL + " College";
 	private static final String CLARKSON = "Clarkson";
 	private static final String DIXIE = "Dixie";
 	private static final String EAST_GWILLIMBURY = "East Gwillimbury";
@@ -132,6 +137,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String FINCH = "Finch";
 	private static final String GEORGETOWN = "Georgetown";
 	private static final String GORMLEY = "Gormley";
+	private static final String GUELPH = "Guelph";
+	private static final String GUELPH_CENTRAL = GUELPH + " Central";
 	private static final String HAMILTON = "Hamilton";
 	private static final String KING_CITY = "King City";
 	private static final String LANGSTAFF = "Langstaff";
@@ -147,19 +154,24 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String NEWMARKET = "Newmarket";
 	private static final String NIAGARA_FALLS = "Niagara Falls";
 	private static final String OAKVILLE = "Oakville";
+	private static final String OAKVILLE_CARPOOL = OAKVILLE + " Carpool";
 	private static final String OSHAWA = "Oshawa";
 	private static final String PICKERING = "Pickering";
 	private static final String PORT_PERRY = "Port Perry";
 	private static final String RICHMOND_HILL_CENTER = "Richmond Hl Ctr";
 	private static final String SCARBORO = "Scarboro";
+	private static final String SCARBOROUGH = "Scarborough";
 	private static final String SHERIDAN_COLLEGE = "Sheridan College";
 	private static final String SQUARE_ONE = "Sq One";
+	private static final String ST_CATHARINES = "St. Catharines";
+	private static final String STREETSVILLE = "Streetsville";
 	private static final String TRINITY_COMMON = "Trinity Common";
-	private static final String UNIVERSITY_OF_GUELPH = UNIVERSITY_SHORT + " Of Guelph";
+	private static final String UNIVERSITY_OF_GUELPH = UNIVERSITY_SHORT + " Of " + GUELPH;
 	private static final String UNIVERSITY_OF_WATERLOO = UNIVERSITY_SHORT + " Of Waterloo";
 	private static final String UNIVERSITY_OF_TORONTO_SCARBOROUGH = UNIVERSITY_SHORT + " Of T Scarboro";
 	private static final String UNION = "Union";
 	private static final String UNIONVILLE = "Unionville";
+	private static final String UOIT_D_C = "UOIT / D.C.";
 	private static final String UXBRIDGE = "Uxbridge";
 	private static final String WEST_HARBOUR = "West Harbour";
 	private static final String WHITBY = "Whitby";
@@ -180,12 +192,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"A " + BURLINGTON_CARPOOL, //
 					"B " + BURLINGTON, //
 					BURLINGTON_CARPOOL, //
+					"C " + BURLINGTON, //
 					"D " + BURLINGTON //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(BURLINGTON_CARPOOL, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					"B " + NIAGARA_FALLS, //
+					"C " + ST_CATHARINES, //
 					NIAGARA_FALLS //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(NIAGARA_FALLS, mTrip.getHeadsignId());
@@ -284,6 +298,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					"B " + SQUARE_ONE, //
 					"C " + SQUARE_ONE, //
+					"D " + SQUARE_ONE, //
 					"F " + YORK_U, //
 					SQUARE_ONE //
 					).containsAll(headsignsValues)) {
@@ -315,6 +330,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					MILTON //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 29l) {
+			if (Arrays.asList( //
+					"B " + UNIVERSITY_OF_GUELPH, //
+					GUELPH_CENTRAL //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(GUELPH_CENTRAL, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 31l) {
@@ -361,6 +384,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 33L) {
 			if (Arrays.asList( //
 					"A " + YORK_MILLS, //
+					"C " + GEORGETOWN, //
 					"D " + BRAMPTON, //
 					"E " + YORK_MILLS, //
 					MOUNT_PLEASANT, // TODO really?
@@ -430,6 +454,12 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
+			} else if (Arrays.asList( //
+					"A " + SQUARE_ONE, //
+					STREETSVILLE //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(STREETSVILLE, mTrip.getHeadsignId());
+				return true;
 			}
 		} else if (mTrip.getRouteId() == 46l) {
 			if (Arrays.asList( //
@@ -450,7 +480,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"A " + BRAMALEA, //
 					"B " + SQUARE_ONE, //
 					"C " + ERIN_MILLS, //
+					"E " + OAKVILLE_CARPOOL, //
 					"F " + YORK_U, //
+					"H " + BRONTE_CARPOOL, //
 					YORK_U //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
@@ -459,6 +491,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + MC_MASTER_UNIVERSITY, //
 					"C " + MC_MASTER_UNIVERSITY, //
 					"F " + MC_MASTER_UNIVERSITY, //
+					"H " + MC_MASTER_UNIVERSITY, //
 					HAMILTON //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
@@ -468,6 +501,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					"A " + YORK_U, //
 					"B " + YORK_U, //
+					"F " + YORK_U, //
 					YORK_U //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
@@ -475,6 +509,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			} else if (Arrays.asList( //
 					"A " + MEADOWVALE, //
 					"B " + MEADOWVALE, //
+					"F " + UNIVERSITY_OF_GUELPH, //
 					UNIVERSITY_OF_GUELPH //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
@@ -482,8 +517,10 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 51l) {
 			if (Arrays.asList( //
+					"A " + SCARBOROUGH, //
 					"B " + PICKERING, //
 					"C " + UNIVERSITY_OF_TORONTO_SCARBOROUGH, //
+					"D " + CENTENNIAL_COLLEGE, //
 					PICKERING //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(PICKERING, mTrip.getHeadsignId());
@@ -491,9 +528,40 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			} else if (Arrays.asList( //
 					"A " + YORK_U, //
 					"B " + YORK_U, //
+					"C " + YORK_U, //
 					YORK_U //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 52L) {
+			if (Arrays.asList( //
+					"B " + YORK_U, //
+					YORK_U //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
+				return true;
+			} else if (Arrays.asList( //
+					"A " + UOIT_D_C, //
+					OSHAWA //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 54L) {
+			if (Arrays.asList( //
+					"A " + YORK_U, //
+					"B " + YORK_U, //
+					"C " + YORK_U, //
+					YORK_U //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
+				return true;
+			} else if (Arrays.asList( //
+					"C " + MOUNT_JOY, //
+					MOUNT_JOY //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(MOUNT_JOY, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 61l) {
@@ -556,6 +624,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					NEWMARKET //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId());
+				return true;
+			} else if (Arrays.asList( //
+					"A " + EAST_GWILLIMBURY, //
+					"A " + NEWMARKET, //
+					EAST_GWILLIMBURY, //
+					NEWMARKET //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(EAST_GWILLIMBURY, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					"A " + YORKDALE, //
@@ -692,6 +768,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); // OSHAWA
 				return true;
 			}
+		}
+		if (isGoodEnoughAccepted()) {
+			return super.mergeHeadsign(mTrip, mTripToMerge);
 		}
 		System.out.printf("\n%s: Unexpected trips to merge: %s & %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
 		System.exit(-1);
