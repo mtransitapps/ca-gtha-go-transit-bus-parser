@@ -225,8 +225,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + UNION, //
 					"G " + UNION, //
 					"H " + UNION, //
-					UNION //
-					).containsAll(headsignsValues)) {
+					UNION, //
+					"SPECIAL" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -234,8 +235,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"D " + CLARKSON, //
 					"E " + WEST_HARBOUR, //
 					"F " + HAMILTON, //
-					HAMILTON //
-					).containsAll(headsignsValues)) {
+					HAMILTON, //
+					"SPECIAL" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -402,6 +404,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					UNIVERSITY_OF_GUELPH //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 35l) {
+			if (Arrays.asList( //
+					"Pearson Airport UP Express", //
+					"Weston UP Express" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Weston UP Express", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 36l) {
