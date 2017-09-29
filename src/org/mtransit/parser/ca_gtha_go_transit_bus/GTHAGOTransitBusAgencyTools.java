@@ -3,6 +3,7 @@ package org.mtransit.parser.ca_gtha_go_transit_bus;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
@@ -162,6 +163,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String SCARBORO = "Scarboro";
 	private static final String SCARBOROUGH = "Scarborough";
 	private static final String SHERIDAN_COLLEGE = "Sheridan College";
+	private static final String SPECIAL = "Special";
 	private static final String SQUARE_ONE = "Sq One";
 	private static final String ST_CATHARINES = "St. Catharines";
 	private static final String STREETSVILLE = "Streetsville";
@@ -226,8 +228,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"G " + UNION, //
 					"H " + UNION, //
 					UNION, //
-					"SPECIAL" //
-			).containsAll(headsignsValues)) {
+					SPECIAL //
+					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -236,8 +238,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"E " + WEST_HARBOUR, //
 					"F " + HAMILTON, //
 					HAMILTON, //
-					"SPECIAL" //
-			).containsAll(headsignsValues)) {
+					SPECIAL //
+					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -729,6 +731,10 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + OSHAWA, //
 					"C " + NEWCASTLE, //
 					"D " + BOWMANVILLE_PARK_AND_RIDE, //
+					AJAX, //
+					OSHAWA, //
+					SPECIAL, //
+					WHITBY, //
 					NEWCASTLE //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(NEWCASTLE, mTrip.getHeadsignId());
@@ -737,6 +743,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"A " + OSHAWA, //
 					"B " + UNION, //
 					OSHAWA, //
+					PICKERING, //
+					SPECIAL, //
 					UNION //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); // OSHAWA
@@ -762,7 +770,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + OSHAWA, //
 					"C " + AJAX, //
 					"D " + OSHAWA, //
-					"SPECIAL", //
+					SPECIAL, //
 					OSHAWA //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId());
@@ -772,7 +780,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + FINCH, //
 					"C " + FINCH, //
 					"D " + FINCH, //
-					"SPECIAL", //
+					SPECIAL, //
 					FINCH //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); // OSHAWA
@@ -818,6 +826,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		}
 		tripHeadsign = CleanUtils.CLEAN_AND.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AND_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_AT.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
+		if (StringUtils.isAllUpperCase(tripHeadsign)) {
+			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
+		}
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
