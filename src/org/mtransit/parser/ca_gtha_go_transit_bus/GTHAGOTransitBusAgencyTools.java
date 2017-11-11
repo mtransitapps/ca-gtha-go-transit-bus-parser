@@ -81,7 +81,6 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
 	}
 
-
 	private static final String AGENCY_COLOR = "387C2B"; // GREEN (AGENCY WEB SITE CSS)
 
 	@Override
@@ -261,7 +260,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(SQUARE_ONE, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 21l) {
+		} else if (mTrip.getRouteId() == 21L) {
 			if (Arrays.asList( //
 					"A " + UNION, //
 					"B " + UNION, //
@@ -288,6 +287,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"D " + LISGAR, //
 					"E " + LISGAR, //
 					"G " + ERINDALE, //
+					"F " + SQUARE_ONE, //
 					"H " + SQUARE_ONE, //
 					"J " + SQUARE_ONE, //
 					"M " + DIXIE, //
@@ -403,6 +403,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"D " + UNIVERSITY_OF_GUELPH, //
 					"E " + GEORGETOWN, //
 					"F " + UNIVERSITY_OF_GUELPH, //
+					"G " + GEORGETOWN, //
 					UNIVERSITY_OF_GUELPH //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
@@ -786,9 +787,6 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); // OSHAWA
 				return true;
 			}
-		}
-		if (isGoodEnoughAccepted()) {
-			return super.mergeHeadsign(mTrip, mTripToMerge);
 		}
 		System.out.printf("\n%s: Unexpected trips to merge: %s & %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
 		System.exit(-1);
