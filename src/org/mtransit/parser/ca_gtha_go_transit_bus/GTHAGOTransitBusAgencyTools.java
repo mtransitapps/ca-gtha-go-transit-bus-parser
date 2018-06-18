@@ -20,10 +20,9 @@ import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MRoute;
 import org.mtransit.parser.mt.data.MTrip;
 
-// http://www.gotransit.com/publicroot/en/schedules/DeveloperResources.aspx
-// http://www.gotransit.com/timetables/fr/schedules/DeveloperResources.aspx
-// http://www.gotransit.com/publicroot/en/schedules/GTFSdownload.aspx
-// http://www.gotransit.com/publicroot/gtfs/google_transit.zip
+// https://www.gotransit.com/en/information-resources/software-developers
+// https://www.gotransit.com/fr/ressources-informatives/dveloppeurs-de-logiciel
+// https://www.gotransit.com/static_files/gotransit/assets/Files/GO_GTFS.zip
 public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(String[] args) {
@@ -745,12 +744,16 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(WHITBY, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 90l) {
+		} else if (mTrip.getRouteId() == 90L) {
 			if (Arrays.asList( //
 					"A " + BOWMANVILLE, //
 					"B " + OSHAWA, //
 					"C " + NEWCASTLE, //
 					"D " + BOWMANVILLE_PARK_AND_RIDE, //
+					"Y " + AJAX, //
+					"X " + WHITBY, //
+					"W " + OSHAWA, //
+					"Z " + OSHAWA, //
 					AJAX, //
 					OSHAWA, //
 					SPECIAL, //
@@ -762,6 +765,10 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			} else if (Arrays.asList( //
 					"A " + OSHAWA, //
 					"B " + UNION, //
+					"Y " + PICKERING, //
+					"X " + PICKERING, //
+					"W " + PICKERING, //
+					"Z " + PICKERING, //
 					OSHAWA, //
 					PICKERING, //
 					SPECIAL, //
@@ -1014,6 +1021,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final int PA_SID = 311;
 	private static final String SID_SCTH = "SCTH";
 	private static final int SCTH_SID = 100005;
+	private static final String SID_DW = "DW";
+	private static final int DW_SID = 100006;
 
 	@Override
 	public int getStopId(GStop gStop) {
@@ -1154,8 +1163,10 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				return PA_SID;
 			} else if (SID_SCTH.equals(gStop.getStopId())) {
 				return SCTH_SID;
+			} else if (SID_DW.equals(gStop.getStopId())) {
+				return DW_SID;
 			} else {
-				System.out.println("Unexpected stop ID " + gStop);
+				System.out.println("Unexpected stop ID for " + gStop + "! (" + gStop.getStopId() + ")");
 				System.exit(-1);
 				return -1;
 			}
