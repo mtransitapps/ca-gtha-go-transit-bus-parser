@@ -416,12 +416,18 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 35l) {
+		} else if (mTrip.getRouteId() == 35L) {
 			if (Arrays.asList( //
-					"Pearson Airport UP Express", //
-					"Weston UP Express" //
+					"A Pearson Airport UP Express", // ==
+					"Weston" //
 			).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString("Weston UP Express", mTrip.getHeadsignId());
+				mTrip.setHeadsignString("Weston", mTrip.getHeadsignId());
+				return true;
+			} else if (Arrays.asList( //
+					"A Pearson Airport UP Express", // ==
+					"Pearson Airport UP Express" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Pearson Airport UP Express", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 36l) {
