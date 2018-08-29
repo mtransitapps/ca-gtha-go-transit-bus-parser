@@ -788,7 +788,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); // OSHAWA
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 92l) {
+		} else if (mTrip.getRouteId() == 92L) {
 			if (Arrays.asList( //
 					"A " + AJAX, //
 					"A " + "Dundas" + SLASH + "Hwy 412 " + PARK_AND_RIDE_SHORT, //
@@ -798,18 +798,20 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			} else if (Arrays.asList( //
 					"A " + FINCH, //
+					"A " + YORKDALE, //
 					"A " + "Dundas" + SLASH + "Hwy 412 " + PARK_AND_RIDE_SHORT, //
 					YORKDALE //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId()); // OSHAWA
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 96l) {
+		} else if (mTrip.getRouteId() == 96L) {
 			if (Arrays.asList( //
 					"A " + OSHAWA, //
 					"B " + OSHAWA, //
 					"C " + AJAX, //
 					"D " + OSHAWA, //
+					"E " + SCARBORO, //
 					SPECIAL, //
 					OSHAWA //
 					).containsAll(headsignsValues)) {
@@ -820,6 +822,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + FINCH, //
 					"C " + FINCH, //
 					"D " + FINCH, //
+					"E " + FINCH, //
 					SPECIAL, //
 					FINCH //
 					).containsAll(headsignsValues)) {
