@@ -195,7 +195,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
 		List<String> headsignsValues = Arrays.asList(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignValue());
-		if (mTrip.getRouteId() == 12l) {
+		if (mTrip.getRouteId() == 12L) {
 			if (Arrays.asList( //
 					"A " + BURLINGTON_CARPOOL, //
 					"B " + BURLINGTON, //
@@ -213,7 +213,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(NIAGARA_FALLS, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 15l) {
+		} else if (mTrip.getRouteId() == 15L) {
 			if (Arrays.asList( //
 					"A " + ALDERSHOT, //
 					ALDERSHOT //
@@ -227,16 +227,16 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(BRANTFORD, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 18l) {
+		} else if (mTrip.getRouteId() == 18L) {
 			if (Arrays.asList( //
 					ALDERSHOT, //
 					"B " + UNION, //
 					"G " + UNION, //
 					"H " + UNION, //
-					UNION, //
+					UNION, // ++
 					SPECIAL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); // ALDERSHOT
 				return true;
 			} else if (Arrays.asList( //
 					"C " + HAMILTON, //
@@ -249,7 +249,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 19l) {
+		} else if (mTrip.getRouteId() == 19L) {
 			if (Arrays.asList( //
 					"A " + FINCH, //
 					"B " + YORK_MILLS, //
@@ -306,7 +306,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 25l) {
+		} else if (mTrip.getRouteId() == 25L) {
 			if (Arrays.asList( //
 					"B " + SQUARE_ONE, //
 					"C " + SQUARE_ONE, //
@@ -324,7 +324,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNIVERSITY_OF_WATERLOO, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 27l) {
+		} else if (mTrip.getRouteId() == 27L) {
 			if (Arrays.asList( //
 					"A " + FINCH, //
 					"B " + YORK_MILLS, //
@@ -344,7 +344,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 29l) {
+		} else if (mTrip.getRouteId() == 29L) {
 			if (Arrays.asList( //
 					"B " + UNIVERSITY_OF_GUELPH, //
 					GUELPH_CENTRAL //
@@ -352,7 +352,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(GUELPH_CENTRAL, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 31l) {
+		} else if (mTrip.getRouteId() == 31L) {
 			if (Arrays.asList( //
 					"A " + UNION, //
 					"D " + BRAMALEA, //
@@ -377,7 +377,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 32l) {
+		} else if (mTrip.getRouteId() == 32L) {
 			if (Arrays.asList( //
 					"A " + YORK_MILLS, //
 					"B " + YORK_MILLS, //
@@ -430,7 +430,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("Pearson Airport UP Express", mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 36l) {
+		} else if (mTrip.getRouteId() == 36L) {
 			if (Arrays.asList( //
 					"B " + YORK_MILLS, //
 					YORK_MILLS //
@@ -444,7 +444,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(BRAMPTON, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 38l) {
+		} else if (mTrip.getRouteId() == 38L) {
 			if (Arrays.asList( //
 					"A " + BOLTON, //
 					BOLTON //
@@ -454,12 +454,12 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			} else if (Arrays.asList( //
 					"A " + YORK_MILLS, //
 					MALTON, //
-					YORK_MILLS //
+					YORK_MILLS // ++
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); // MALTON
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 40l) {
+		} else if (mTrip.getRouteId() == 40L) {
 			if (Arrays.asList( //
 					"A " + SQUARE_ONE, //
 					RICHMOND_HILL_CENTER //
@@ -473,7 +473,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 45l) {
+		} else if (mTrip.getRouteId() == 45L) {
 			if (Arrays.asList( //
 					"A " + YORK_U, //
 					YORK_U //
@@ -487,7 +487,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(STREETSVILLE, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 46l) {
+		} else if (mTrip.getRouteId() == 46L) {
 			if (Arrays.asList( //
 					"A " + SQUARE_ONE, //
 					YORK_U //
@@ -501,7 +501,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(OAKVILLE, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 47l) {
+		} else if (mTrip.getRouteId() == 47L) {
 			if (Arrays.asList( //
 					"A " + BRAMALEA, //
 					"B " + SQUARE_ONE, //
@@ -523,7 +523,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 48l) {
+		} else if (mTrip.getRouteId() == 48L) {
 			if (Arrays.asList( //
 					"A " + YORK_U, //
 					"B " + YORK_U, //
@@ -541,7 +541,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 51l) {
+		} else if (mTrip.getRouteId() == 51L) {
 			if (Arrays.asList( //
 					"A " + SCARBOROUGH, //
 					"B " + PICKERING, //
@@ -590,7 +590,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(MOUNT_JOY, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 61l) {
+		} else if (mTrip.getRouteId() == 61L) {
 			if (Arrays.asList( //
 					"B " + LANGSTAFF, //
 					"C " + GORMLEY, //
@@ -656,7 +656,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 66l) {
+		} else if (mTrip.getRouteId() == 66L) {
 			if (Arrays.asList( //
 					"A " + NEWMARKET, //
 					NEWMARKET //
@@ -695,10 +695,9 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"C " + AURORA, //
 					"D " + UNION, //
 					"W " + RUTHERFORD, //
-					"Y " + KING_CITY, //
-					NEWMARKET //
-					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId());
+					"Y " + KING_CITY //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(AURORA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 69L) {
@@ -715,7 +714,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(AURORA, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 70l) {
+		} else if (mTrip.getRouteId() == 70L) {
 			if (Arrays.asList( //
 					"B " + UXBRIDGE, //
 					"E " + MOUNT_JOY, //
@@ -732,7 +731,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNIONVILLE, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 71l) {
+		} else if (mTrip.getRouteId() == 71L) {
 			if (Arrays.asList( //
 					"A " + UXBRIDGE, //
 					"C " + LINCOLNVILLE, //
@@ -755,7 +754,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 81l) {
+		} else if (mTrip.getRouteId() == 81L) {
 			if (Arrays.asList( //
 					"A " + PORT_PERRY, //
 					BEAVERTON //
@@ -775,9 +774,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					"B " + OSHAWA, //
 					"C " + NEWCASTLE, //
 					"D " + BOWMANVILLE_PARK_AND_RIDE, //
-					"Y " + AJAX, //
-					"X " + WHITBY, //
+					"P " + OSHAWA, //
+					"Q " + OSHAWA, //
+					"R " + OSHAWA, //
+					"T " + WHITBY, //
 					"W " + OSHAWA, //
+					"X " + WHITBY, //
+					"Y " + AJAX, //
 					"Z " + OSHAWA, //
 					AJAX, //
 					OSHAWA, //
@@ -790,14 +793,19 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			} else if (Arrays.asList( //
 					"A " + OSHAWA, //
 					"B " + UNION, //
-					"Y " + PICKERING, //
-					"X " + PICKERING, //
+					"P " + WHITBY, //
+					"Q " + AJAX, //
+					"Q " + OSHAWA, //
+					"R " + AJAX, //
+					"T " + AJAX, //
 					"W " + PICKERING, //
+					"X " + PICKERING, //
+					"Y " + PICKERING, //
 					"Z " + PICKERING, //
 					OSHAWA, //
 					PICKERING, //
 					SPECIAL, //
-					UNION //
+					UNION // ++
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); // OSHAWA
 				return true;
