@@ -643,6 +643,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + SCARBOROUGH, //
 					B_ + PICKERING, //
 					C_ + UNIVERSITY_OF_TORONTO_SCARBOROUGH, //
+					D_ + UNIVERSITY_OF_TORONTO_SCARBOROUGH, //
 					D_ + CENTENNIAL_COLLEGE, //
 					PICKERING //
 					).containsAll(headsignsValues)) {
