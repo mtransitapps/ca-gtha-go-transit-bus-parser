@@ -855,6 +855,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 70L) {
 			if (Arrays.asList( //
 					B_ + UXBRIDGE, //
+					C_ + LINCOLNVILLE, //
+					D_ + UXBRIDGE, //
 					E_ + MOUNT_JOY, //
 					UXBRIDGE //
 					).containsAll(headsignsValues)) {
@@ -863,6 +865,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			} else if (Arrays.asList( //
 					A_ + UNIONVILLE, //
 					B_ + LINCOLNVILLE, //
+					D_ + MOUNT_JOY, //
 					E_ + UNIONVILLE, //
 					UNIONVILLE //
 					).containsAll(headsignsValues)) {
