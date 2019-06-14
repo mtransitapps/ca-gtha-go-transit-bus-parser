@@ -858,6 +858,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					C_ + LINCOLNVILLE, //
 					D_ + UXBRIDGE, //
 					E_ + MOUNT_JOY, //
+					F_ + LINCOLNVILLE, //
 					UXBRIDGE //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UXBRIDGE, mTrip.getHeadsignId());
