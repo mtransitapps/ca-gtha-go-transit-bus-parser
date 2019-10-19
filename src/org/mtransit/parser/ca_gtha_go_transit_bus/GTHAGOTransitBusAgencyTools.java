@@ -392,6 +392,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 31L) {
 			if (Arrays.asList( //
 					A_ + UNION, //
+					B_ + BRAMALEA, //
 					D_ + BRAMALEA, //
 					E_ + UNION, //
 					F_ + UNION, //
@@ -868,6 +869,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + LINCOLNVILLE, //
 					D_ + MOUNT_JOY, //
 					E_ + UNIONVILLE, //
+					F_ + MOUNT_JOY, //
 					UNIONVILLE //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIONVILLE, mTrip.getHeadsignId());
@@ -879,6 +881,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					C_ + LINCOLNVILLE, //
 					D_ + LINCOLNVILLE, //
 					F_ + CENTENNIAL, //
+					E_ + MOUNT_JOY, //
 					G_ + UNIONVILLE, //
 					UXBRIDGE //
 					).containsAll(headsignsValues)) {
