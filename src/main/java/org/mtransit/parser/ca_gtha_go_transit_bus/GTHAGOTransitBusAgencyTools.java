@@ -1,14 +1,9 @@
 package org.mtransit.parser.ca_gtha_go_transit_bus;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang3.StringUtils;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
+import org.mtransit.parser.MTLog;
 import org.mtransit.parser.Utils;
 import org.mtransit.parser.gtfs.data.GCalendar;
 import org.mtransit.parser.gtfs.data.GCalendarDate;
@@ -19,6 +14,12 @@ import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MRoute;
 import org.mtransit.parser.mt.data.MTrip;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 // https://www.gotransit.com/en/information-resources/software-developers
 // https://www.gotransit.com/fr/ressources-informatives/dveloppeurs-de-logiciel
@@ -39,11 +40,11 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void start(String[] args) {
-		System.out.printf("\nGenerating GO Transit bus data...");
+		MTLog.log("Generating GO Transit bus data...");
 		long start = System.currentTimeMillis();
 		this.serviceIds = extractUsefulServiceIds(args, this, true);
 		super.start(args);
-		System.out.printf("\nGenerating GO Transit bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+		MTLog.log("Generating GO Transit bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
 
 	@Override
@@ -105,8 +106,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (isGoodEnoughAccepted()) {
 				return null;
 			}
-			System.out.printf("\nUnexpected route color for %s!\n", gRoute);
-			System.exit(-1);
+			MTLog.logFatal("Unexpected route color for %s!", gRoute);
 			return null;
 		}
 		return super.getRouteColor(gRoute);
@@ -245,7 +245,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + NIAGARA_FALLS, //
 					C_ + ST_CATHARINES, //
 					NIAGARA_FALLS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(NIAGARA_FALLS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -253,13 +253,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + ALDERSHOT, //
 					ALDERSHOT //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(ALDERSHOT, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + MC_MASTER_UNIVERSITY, //
 					BRANTFORD //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(BRANTFORD, mTrip.getHeadsignId());
 				return true;
 			}
@@ -271,7 +271,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					H_ + UNION, //
 					UNION, // ++
 					SPECIAL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); // ALDERSHOT
 				return true;
 			} else if (Arrays.asList( //
@@ -281,7 +281,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					F_ + HAMILTON, //
 					HAMILTON, //
 					SPECIAL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -291,7 +291,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + YORK_MILLS, //
 					C_ + FINCH, //
 					FINCH //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -299,7 +299,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + SQUARE_ONE, //
 					C_ + SQUARE_ONE, //
 					SQUARE_ONE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(SQUARE_ONE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -322,7 +322,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					R_ + UNION, //
 					T_ + UNION, //
 					UNION //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -338,7 +338,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					N_ + MILTON, //
 					P_ + MEADOWVALE, //
 					MILTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -350,14 +350,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					F_ + HIGHWAY_407, //
 					F_ + YORK_U, //
 					SQUARE_ONE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(SQUARE_ONE, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					C_ + UNIVERSITY_OF_WATERLOO, //
 					F_ + UNIVERSITY_OF_WATERLOO, //
 					UNIVERSITY_OF_WATERLOO //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_WATERLOO, mTrip.getHeadsignId());
 				return true;
 			}
@@ -368,7 +368,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					C_ + FINCH, //
 					F_ + FINCH, //
 					FINCH //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -377,7 +377,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					C_ + MILTON, //
 					F_ + MEADOWVALE, //
 					MILTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(MILTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -385,7 +385,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					B_ + UNIVERSITY_OF_GUELPH, //
 					GUELPH_CENTRAL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(GUELPH_CENTRAL, mTrip.getHeadsignId());
 				return true;
 			}
@@ -400,7 +400,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					J_ + UNION, //
 					L_ + UNION, //
 					UNION //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -411,7 +411,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					L_ + BRAMALEA, //
 					N_ + BRAMALEA, //
 					UNIVERSITY_OF_GUELPH //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
 				return true;
 			}
@@ -420,14 +420,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + YORK_MILLS, //
 					B_ + YORK_MILLS, //
 					YORK_MILLS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + BRAMALEA, //
 					B_ + BRAMALEA, //
 					TRINITY_COMMON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(TRINITY_COMMON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -438,7 +438,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					D_ + BRAMPTON, //
 					E_ + YORK_MILLS, //
 					YORK_MILLS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -450,7 +450,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					F_ + UNIVERSITY_OF_GUELPH, //
 					G_ + GEORGETOWN, //
 					UNIVERSITY_OF_GUELPH //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
 				return true;
 			}
@@ -458,7 +458,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + PEARSON_AIRPORT + " UP Express", // ==
 					WESTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(WESTON, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -472,13 +472,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					B_ + YORK_MILLS, //
 					YORK_MILLS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					B_ + BRAMALEA, //
 					BRAMPTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(BRAMPTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -486,14 +486,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					B_ + BRAMPTON, //
 					BRAMPTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(BRAMPTON, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					A_ + ORANGEVILLE_MALL, //
 					ORANGEVILLE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(ORANGEVILLE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -501,14 +501,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + BOLTON, //
 					BOLTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(BOLTON, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + YORK_MILLS, //
 					MALTON, //
 					YORK_MILLS // ++
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId()); // MALTON
 				return true;
 			}
@@ -516,14 +516,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + SQUARE_ONE, //
 					RICHMOND_HILL_CENTER //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(RICHMOND_HILL_CENTER, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + HAMILTON, //
 					B_ + PEARSON_AIRPORT, // .
 					HAMILTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -531,7 +531,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + HIGHWAY_407, //
 					HIGHWAY_407 //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
 				return true;
 			}
@@ -540,13 +540,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					HIGHWAY_407, //
 					A_ + YORK_U, //
 					YORK_U //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + SQUARE_ONE, //
 					STREETSVILLE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(STREETSVILLE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -554,7 +554,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + SQUARE_ONE, //
 					HIGHWAY_407 //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
 				return true;
 			}
@@ -562,13 +562,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + SQUARE_ONE, //
 					HIGHWAY_407, //
 					YORK_U //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + SHERIDAN_COLLEGE, //
 					OAKVILLE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OAKVILLE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -581,7 +581,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					F_ + HIGHWAY_407, //
 					H_ + BRONTE_CARPOOL, //
 					HIGHWAY_407 //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
 				return true;
 			}
@@ -595,7 +595,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					HIGHWAY_407, //
 					F_ + YORK_U, //
 					YORK_U //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -604,7 +604,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					F_ + MC_MASTER_UNIVERSITY, //
 					H_ + MC_MASTER_UNIVERSITY, //
 					HAMILTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HAMILTON, mTrip.getHeadsignId());
 				return true;
 			}
@@ -614,7 +614,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + HIGHWAY_407, //
 					F_ + HIGHWAY_407, //
 					HIGHWAY_407 //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
 				return true;
 			}
@@ -627,7 +627,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + YORK_U, //
 					F_ + YORK_U, //
 					YORK_U //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -635,7 +635,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + MEADOWVALE, //
 					F_ + UNIVERSITY_OF_GUELPH, //
 					UNIVERSITY_OF_GUELPH //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
 				return true;
 			}
@@ -647,7 +647,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					D_ + UNIVERSITY_OF_TORONTO_SCARBOROUGH, //
 					D_ + CENTENNIAL_COLLEGE, //
 					PICKERING //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(PICKERING, mTrip.getHeadsignId());
 				return true;
 			}
@@ -656,7 +656,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + HIGHWAY_407, //
 					C_ + HIGHWAY_407, //
 					HIGHWAY_407 //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
 				return true;
 			}
@@ -669,7 +669,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + YORK_U, //
 					C_ + YORK_U, //
 					YORK_U //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
 			}
@@ -678,7 +678,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + HIGHWAY_407, //
 					D_ + HIGHWAY_407, //
 					HIGHWAY_407 //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -687,7 +687,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					HIGHWAY_407, //
 					B_ + YORK_U, //
 					YORK_U //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
 			}
@@ -695,7 +695,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + UOIT_D_C, //
 					D_ + UNIONVILLE, //
 					OSHAWA //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId());
 				return true;
 			}
@@ -705,7 +705,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + HIGHWAY_407, //
 					C_ + HIGHWAY_407, //
 					HIGHWAY_407 //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -717,14 +717,14 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + YORK_U, //
 					C_ + YORK_U, //
 					YORK_U //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_U, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					C_ + MOUNT_JOY, //
 					MOUNT_JOY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(MOUNT_JOY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -734,7 +734,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					C_ + GORMLEY, //
 					E_ + GORMLEY, //
 					GORMLEY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(GORMLEY, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -744,7 +744,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					D_ + UNION, //
 					F_ + UNION, //
 					UNION //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			}
@@ -753,7 +753,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + KING_CITY, //
 					Y_ + AURORA, //
 					KING_CITY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(KING_CITY, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -761,7 +761,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					W_ + UNION, //
 					Y_ + RUTHERFORD,//
 					UNION //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			}
@@ -776,7 +776,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					W_ + EAST_GWILLIMBURY, //
 					X_ + AURORA, //
 					EAST_GWILLIMBURY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(EAST_GWILLIMBURY, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -791,7 +791,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					X_ + RUTHERFORD, //
 					Y_ + UNION, //
 					UNION //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			}
@@ -799,7 +799,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + NEWMARKET, //
 					NEWMARKET //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -807,13 +807,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + NEWMARKET, //
 					EAST_GWILLIMBURY, //
 					NEWMARKET //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(EAST_GWILLIMBURY, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + YORKDALE, //
 					YORKDALE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -825,7 +825,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					D_ + ALLANDALE_WATERFRONT, //
 					X_ + ALLANDALE_WATERFRONT, //
 					BARRIE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(BARRIE, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -843,13 +843,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + AURORA + _SLASH_ + "404", //
 					NEWMARKET //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(NEWMARKET, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + AURORA, //
 					AURORA //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(AURORA, mTrip.getHeadsignId());
 				return true;
 			}
@@ -861,7 +861,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					E_ + MOUNT_JOY, //
 					F_ + LINCOLNVILLE, //
 					UXBRIDGE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UXBRIDGE, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -871,7 +871,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					E_ + UNIONVILLE, //
 					F_ + MOUNT_JOY, //
 					UNIONVILLE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIONVILLE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -884,7 +884,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					E_ + MOUNT_JOY, //
 					G_ + UNIONVILLE, //
 					UXBRIDGE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UXBRIDGE, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -895,7 +895,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					F_ + UNION, //
 					G_ + UNION, //
 					UNION //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			}
@@ -903,13 +903,13 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					A_ + PORT_PERRY, //
 					BEAVERTON //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(BEAVERTON, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + WHITBY, //
 					WHITBY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(WHITBY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -933,7 +933,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					SPECIAL, //
 					WHITBY, //
 					NEWCASTLE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(NEWCASTLE, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -952,7 +952,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					PICKERING, //
 					SPECIAL, //
 					UNION // ++
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId()); // OSHAWA
 				return true;
 			}
@@ -961,7 +961,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + AJAX, //
 					A_ + DUNDAS + _SLASH_ + HIGHWAY_412 + _PARK_AND_RIDE_SHORT, //
 					OSHAWA //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -969,7 +969,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + YORKDALE, //
 					A_ + DUNDAS + _SLASH_ + HIGHWAY_412 + _PARK_AND_RIDE_SHORT, //
 					YORKDALE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORKDALE, mTrip.getHeadsignId()); // OSHAWA
 				return true;
 			}
@@ -982,7 +982,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					E_ + SCARBORO, //
 					SPECIAL, //
 					OSHAWA //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
@@ -993,34 +993,33 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					E_ + FINCH, //
 					SPECIAL, //
 					FINCH //
-					).containsAll(headsignsValues)) {
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(FINCH, mTrip.getHeadsignId()); // OSHAWA
 				return true;
 			}
 		}
-		System.out.printf("\n%s: Unexpected trips to merge: %s & %s!\n", mTrip.getRouteId(), mTrip, mTripToMerge);
-		System.exit(-1);
+		MTLog.logFatal("%s: Unexpected trips to merge: %s & %s!", mTrip.getRouteId(), mTrip, mTripToMerge);
 		return false;
 	}
 
-	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[0-9]{2,3}([A-Z]?)(\\s+)\\- )", Pattern.CASE_INSENSITIVE);
+	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[0-9]{2,3}([A-Z]?)(\\s+)- )", Pattern.CASE_INSENSITIVE);
 	private static final String STARTS_WITH_RSN_REPLACEMENT = "$2$3";
 
-	private static final Pattern STATION = Pattern.compile("((^|\\W){1}(station|sta|stn)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern STATION = Pattern.compile("((^|\\W)(station|sta|stn)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String STATION_REPLACEMENT = "$2$4";
 
-	private static final Pattern PARK_AND_RIDE = Pattern.compile("((^|\\W){1}(park & ride|P\\+R)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern PARK_AND_RIDE = Pattern.compile("((^|\\W)(park & ride|P\\+R)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String PARK_AND_RIDE_REPLACEMENT = "$2" + PARK_AND_RIDE_SHORT + "$4";
 
-	private static final Pattern UNIVERSITY = Pattern.compile("((^|\\W){1}(university)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern UNIVERSITY = Pattern.compile("((^|\\W)(university)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String UNIVERSITY_REPLACEMENT = "$2" + UNIVERSITY_SHORT + "$4";
 
-	private static final Pattern HIGHWAY_ = Pattern.compile("((^|\\W){1}(highway|hwy\\.)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern HIGHWAY_ = Pattern.compile("((^|\\W)(highway|hwy\\.)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String HIGHWAY_REPLACEMENT = "$2" + HIGHWAY_SHORT + "$4";
 
-	private static final Pattern CLEAN_DASH = Pattern.compile("(^[\\s]*\\-[\\s]*|[\\s]*\\-[\\s]*$)", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_DASH = Pattern.compile("(^[\\s]*-[\\s]*|[\\s]*-[\\s]*$)", Pattern.CASE_INSENSITIVE);
 
-	private static final Pattern BUS_TERMINAL = Pattern.compile("( bus loop| bus terminal| bus term[\\.]?| terminal| term[\\.]?)", Pattern.CASE_INSENSITIVE);
+	private static final Pattern BUS_TERMINAL = Pattern.compile("( bus loop| bus terminal| bus term[.]?| terminal| term[.]?)", Pattern.CASE_INSENSITIVE);
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
@@ -1047,16 +1046,16 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
-	private static final Pattern GO = Pattern.compile("(^|\\s){1}(go)($|\\s){1}", Pattern.CASE_INSENSITIVE);
+	private static final Pattern GO = Pattern.compile("(^|\\s)(go)($|\\s)", Pattern.CASE_INSENSITIVE);
 	private static final String GO_REPLACEMENT = " ";
 
-	private static final Pattern VIA = Pattern.compile("(^|\\s){1}(via)($|\\s){1}", Pattern.CASE_INSENSITIVE);
+	private static final Pattern VIA = Pattern.compile("(^|\\s)(via)($|\\s)", Pattern.CASE_INSENSITIVE);
 	private static final String VIA_REPLACEMENT = " ";
 
-	private static final Pattern POINT = Pattern.compile("((^|\\W){1}(st|ave|blvd|hwy|rd|dr)\\.(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern POINT = Pattern.compile("((^|\\W)(st|ave|blvd|hwy|rd|dr)\\.(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String POINT_REPLACEMENT = "$2$3$4";
 
-	private static final Pattern DIRECTION = Pattern.compile("((^|\\W){1}(s|n|e|w)\\.(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern DIRECTION = Pattern.compile("((^|\\W)([snew])\\.(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String DIRECTION_REPLACEMENT = "$2$3$4";
 
 	@Override
@@ -1352,8 +1351,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			} else if (SID_DW.equals(gStop.getStopId())) {
 				return DW_SID;
 			} else {
-				System.out.println("Unexpected stop ID for " + gStop + "! (" + gStop.getStopId() + ")");
-				System.exit(-1);
+				MTLog.logFatal("Unexpected stop ID for " + gStop + "! (" + gStop.getStopId() + ")");
 				return -1;
 			}
 		}
