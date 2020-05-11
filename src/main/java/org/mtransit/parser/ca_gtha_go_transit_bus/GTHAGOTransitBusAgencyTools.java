@@ -770,6 +770,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					A_ + NEWMARKET, //
 					B_ + EAST_GWILLIMBURY, //
 					C_ + AURORA, //
+					E_ + EAST_GWILLIMBURY, //
+					F_ + AURORA, //
 					G_ + EAST_GWILLIMBURY, //
 					R_ + EAST_GWILLIMBURY, //
 					T_ + EAST_GWILLIMBURY, //
