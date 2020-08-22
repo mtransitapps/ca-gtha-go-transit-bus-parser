@@ -305,6 +305,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 21L) {
 			if (Arrays.asList( //
+					"Display Code Is Missing", // TODO?
 					A_ + UNION, //
 					B_ + UNION, //
 					C_ + UNION, //
@@ -326,6 +327,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
+					"Display Code Is Missing", // TODO?
 					A_ + MILTON, //
 					B_ + MILTON, //
 					D_ + LISGAR, //
@@ -399,17 +401,20 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					H_ + UNION, //
 					J_ + UNION, //
 					L_ + UNION, //
+					UNIVERSITY_OF_GUELPH, // <>
 					UNION //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNION, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
 					A_ + UNIVERSITY_OF_GUELPH, //
+					B_ + UNIVERSITY_OF_GUELPH, //
 					E_ + GEORGETOWN, //
 					F_ + GEORGETOWN, //
 					H_ + BRAMPTON, //
 					L_ + BRAMALEA, //
 					N_ + BRAMALEA, //
+					M_ + UNIVERSITY_OF_GUELPH, //
 					UNIVERSITY_OF_GUELPH //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY_OF_GUELPH, mTrip.getHeadsignId());
@@ -434,9 +439,12 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 33L) {
 			if (Arrays.asList( //
 					A_ + YORK_MILLS, //
+					B_ + YORK_MILLS, //
 					C_ + GEORGETOWN, //
 					D_ + BRAMPTON, //
 					E_ + YORK_MILLS, //
+					F_ + MOUNT_PLEASANT, //
+					G_ + MOUNT_PLEASANT, //
 					YORK_MILLS //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(YORK_MILLS, mTrip.getHeadsignId());
@@ -530,6 +538,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 45L) {
 			if (Arrays.asList( //
 					A_ + HIGHWAY_407, //
+					B_ + UNIONVILLE, //
 					HIGHWAY_407 //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(HIGHWAY_407, mTrip.getHeadsignId());
@@ -545,6 +554,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			} else if (Arrays.asList( //
 					A_ + SQUARE_ONE, //
+					B_ + STREETSVILLE, //
 					STREETSVILLE //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(STREETSVILLE, mTrip.getHeadsignId());
@@ -913,6 +923,21 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					WHITBY //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(WHITBY, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 88L) {
+			if (Arrays.asList( //
+					A_ + OSHAWA, //
+					OSHAWA //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(OSHAWA, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					A_ + NEWCASTLE, //
+					"Trent U" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Trent U", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 90L) {
