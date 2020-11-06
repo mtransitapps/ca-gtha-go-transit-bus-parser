@@ -198,6 +198,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String OSHAWA = "Oshawa";
 	private static final String PEARSON_AIRPORT = "Pearson Airport";
 	private static final String PICKERING = "Pickering";
+	private static final String PORT_CREDIT = "Port Credit";
 	private static final String PORT_PERRY = "Port Perry";
 	private static final String RICHMOND_HILL_CENTER = "Richmond Hl Ctr";
 	private static final String RUTHERFORD = "Rutherford";
@@ -269,6 +270,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					B_ + UNION, //
 					G_ + UNION, //
 					H_ + UNION, //
+					M_ + UNION, //
 					UNION, // ++
 					SPECIAL //
 			).containsAll(headsignsValues)) {
@@ -279,6 +281,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 					D_ + CLARKSON, //
 					E_ + WEST_HARBOUR, //
 					F_ + HAMILTON, //
+					M_ + PORT_CREDIT, //
 					HAMILTON, //
 					SPECIAL //
 			).containsAll(headsignsValues)) {
