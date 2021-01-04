@@ -1,12 +1,12 @@
 package org.mtransit.parser.ca_gtha_go_transit_bus;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.Constants;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
+import org.mtransit.parser.StringUtils;
 import org.mtransit.parser.Utils;
 import org.mtransit.parser.gtfs.data.GCalendar;
 import org.mtransit.parser.gtfs.data.GCalendarDate;
@@ -37,42 +37,43 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		new GTHAGOTransitBusAgencyTools().start(args);
 	}
 
-	private HashSet<String> serviceIds;
+	@Nullable
+	private HashSet<Integer> serviceIdInts;
 
 	@Override
 	public void start(@NotNull String[] args) {
 		MTLog.log("Generating GO Transit bus data...");
 		long start = System.currentTimeMillis();
-		this.serviceIds = extractUsefulServiceIds(args, this, true);
+		this.serviceIdInts = extractUsefulServiceIdInts(args, this, true);
 		super.start(args);
 		MTLog.log("Generating GO Transit bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
 
 	@Override
 	public boolean excludingAll() {
-		return this.serviceIds != null && this.serviceIds.isEmpty();
+		return this.serviceIdInts != null && this.serviceIdInts.isEmpty();
 	}
 
 	@Override
 	public boolean excludeCalendar(@NotNull GCalendar gCalendar) {
-		if (this.serviceIds != null) {
-			return excludeUselessCalendar(gCalendar, this.serviceIds);
+		if (this.serviceIdInts != null) {
+			return excludeUselessCalendarInt(gCalendar, this.serviceIdInts);
 		}
 		return super.excludeCalendar(gCalendar);
 	}
 
 	@Override
 	public boolean excludeCalendarDate(@NotNull GCalendarDate gCalendarDates) {
-		if (this.serviceIds != null) {
-			return excludeUselessCalendarDate(gCalendarDates, this.serviceIds);
+		if (this.serviceIdInts != null) {
+			return excludeUselessCalendarDateInt(gCalendarDates, this.serviceIdInts);
 		}
 		return super.excludeCalendarDate(gCalendarDates);
 	}
 
 	@Override
 	public boolean excludeTrip(@NotNull GTrip gTrip) {
-		if (this.serviceIds != null) {
-			return excludeUselessTrip(gTrip, this.serviceIds);
+		if (this.serviceIdInts != null) {
+			return excludeUselessTripInt(gTrip, this.serviceIdInts);
 		}
 		return super.excludeTrip(gTrip);
 	}
@@ -132,6 +133,33 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		return true;
 	}
 
+	private static final Pattern STARTS_WITH_LETTER = Pattern.compile("(^([A-Z]) )", Pattern.CASE_INSENSITIVE);
+
+	@Nullable
+	@Override
+	public String selectDirectionHeadSign(@Nullable String headSign1, @Nullable String headSign2) {
+		if (StringUtils.equals(headSign1, headSign2)) {
+			return null; // can NOT select
+		}
+		final boolean headSign1StartsWithLetter = headSign1 != null && STARTS_WITH_LETTER.matcher(headSign1).matches();
+		final boolean headSign2StartsWithLetter = headSign2 != null && STARTS_WITH_LETTER.matcher(headSign2).matches();
+		if (headSign1StartsWithLetter) {
+			if (!headSign2StartsWithLetter) {
+				return headSign2;
+			}
+		} else if (headSign2StartsWithLetter) {
+			return headSign1;
+		}
+		return null;
+	}
+
+	@NotNull
+	@Override
+	public String cleanDirectionHeadsign(boolean fromStopName, @NotNull String directionHeadSign) {
+		directionHeadSign = STARTS_WITH_RSN.matcher(directionHeadSign).replaceAll(Constants.EMPTY);
+		return super.cleanDirectionHeadsign(fromStopName, directionHeadSign);
+	}
+
 	@Override
 	public boolean mergeHeadsign(@NotNull MTrip mTrip, @NotNull MTrip mTripToMerge) {
 		throw new MTLog.Fatal("%s: Using direction finder to merge %s and %s!", mTrip.getRouteId(), mTrip, mTripToMerge);
@@ -159,6 +187,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	@NotNull
 	@Override
 	public String cleanTripHeadsign(@NotNull String tripHeadsign) {
+		tripHeadsign = CleanUtils.toLowerCaseUpperCaseWords(Locale.ENGLISH, tripHeadsign);
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(STARTS_WITH_RSN_REPLACEMENT);
 		tripHeadsign = GO.matcher(tripHeadsign).replaceAll(GO_REPLACEMENT);
 		tripHeadsign = STATION.matcher(tripHeadsign).replaceAll(STATION_REPLACEMENT);
@@ -173,21 +202,10 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		}
 		tripHeadsign = CleanUtils.CLEAN_AND.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AND_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_AT.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
-		if (StringUtils.isAllUpperCase(tripHeadsign)) {
-			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
-		}
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
-	}
-
-	@NotNull
-	@Override
-	public String cleanDirectionHeadsign(@NotNull String directionHeadSign) {
-		directionHeadSign = STARTS_WITH_RSN.matcher(directionHeadSign).replaceAll(Constants.EMPTY);
-		directionHeadSign = super.cleanDirectionHeadsign(directionHeadSign);
-		return directionHeadSign;
 	}
 
 	private static final Pattern GO = Pattern.compile("(^|\\s)(go)($|\\s)", Pattern.CASE_INSENSITIVE);
