@@ -2,14 +2,11 @@ package org.mtransit.parser.ca_gtha_go_transit_bus;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mtransit.parser.CleanUtils;
-import org.mtransit.parser.Constants;
+import org.mtransit.commons.CharUtils;
+import org.mtransit.commons.CleanUtils;
+import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
-import org.mtransit.parser.StringUtils;
-import org.mtransit.parser.Utils;
-import org.mtransit.parser.gtfs.data.GCalendar;
-import org.mtransit.parser.gtfs.data.GCalendarDate;
 import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GStop;
@@ -18,9 +15,9 @@ import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MRoute;
 import org.mtransit.parser.mt.data.MTrip;
 
-import java.util.HashSet;
-import java.util.Locale;
 import java.util.regex.Pattern;
+
+import static org.mtransit.commons.StringUtils.EMPTY;
 
 // https://www.gotransit.com/en/information-resources/software-developers
 // https://www.gotransit.com/fr/ressources-informatives/dveloppeurs-de-logiciel
@@ -28,54 +25,12 @@ import java.util.regex.Pattern;
 public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@Nullable String[] args) {
-		if (args == null || args.length == 0) {
-			args = new String[3];
-			args[0] = "input/gtfs.zip";
-			args[1] = "../../mtransitapps/ca-gtha-go-transit-bus-android/res/raw/";
-			args[2] = ""; // files-prefix
-		}
 		new GTHAGOTransitBusAgencyTools().start(args);
 	}
 
-	@Nullable
-	private HashSet<Integer> serviceIdInts;
-
 	@Override
-	public void start(@NotNull String[] args) {
-		MTLog.log("Generating GO Transit bus data...");
-		long start = System.currentTimeMillis();
-		this.serviceIdInts = extractUsefulServiceIdInts(args, this, true);
-		super.start(args);
-		MTLog.log("Generating GO Transit bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
-	}
-
-	@Override
-	public boolean excludingAll() {
-		return this.serviceIdInts != null && this.serviceIdInts.isEmpty();
-	}
-
-	@Override
-	public boolean excludeCalendar(@NotNull GCalendar gCalendar) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarInt(gCalendar, this.serviceIdInts);
-		}
-		return super.excludeCalendar(gCalendar);
-	}
-
-	@Override
-	public boolean excludeCalendarDate(@NotNull GCalendarDate gCalendarDates) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarDateInt(gCalendarDates, this.serviceIdInts);
-		}
-		return super.excludeCalendarDate(gCalendarDates);
-	}
-
-	@Override
-	public boolean excludeTrip(@NotNull GTrip gTrip) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessTripInt(gTrip, this.serviceIdInts);
-		}
-		return super.excludeTrip(gTrip);
+	public boolean defaultExcludeEnabled() {
+		return true;
 	}
 
 	@NotNull
@@ -108,17 +63,10 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 			case 70: return "794500"; //
 			// @formatter:on
 			}
-			if (isGoodEnoughAccepted()) {
-				return null;
-			}
 			throw new MTLog.Fatal("Unexpected route color for %s!", gRoute);
 		}
 		return super.getRouteColor(gRoute);
 	}
-
-	private static final String UNIVERSITY_SHORT = "U";
-	private static final String PARK_AND_RIDE_SHORT = "P&R";
-	private static final String HIGHWAY_SHORT = "Hwy";
 
 	@Override
 	public void setTripHeadsign(@NotNull MRoute mRoute, @NotNull MTrip mTrip, @NotNull GTrip gTrip, @NotNull GSpec gtfs) {
@@ -156,29 +104,12 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	@NotNull
 	@Override
 	public String cleanDirectionHeadsign(boolean fromStopName, @NotNull String directionHeadSign) {
-		directionHeadSign = STARTS_WITH_RSN.matcher(directionHeadSign).replaceAll(Constants.EMPTY);
+		directionHeadSign = STARTS_WITH_RSN.matcher(directionHeadSign).replaceAll(EMPTY);
 		return super.cleanDirectionHeadsign(fromStopName, directionHeadSign);
-	}
-
-	@Override
-	public boolean mergeHeadsign(@NotNull MTrip mTrip, @NotNull MTrip mTripToMerge) {
-		throw new MTLog.Fatal("%s: Using direction finder to merge %s and %s!", mTrip.getRouteId(), mTrip, mTripToMerge);
 	}
 
 	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[0-9]{2,3}([A-Z]?)(\\s+)- )", Pattern.CASE_INSENSITIVE);
 	private static final String STARTS_WITH_RSN_REPLACEMENT = "$2$3";
-
-	private static final Pattern STATION = Pattern.compile("((^|\\W)(station|sta|stn)(\\W|$))", Pattern.CASE_INSENSITIVE);
-	private static final String STATION_REPLACEMENT = "$2$4";
-
-	private static final Pattern PARK_AND_RIDE = Pattern.compile("((^|\\W)(park & ride|P\\+R)(\\W|$))", Pattern.CASE_INSENSITIVE);
-	private static final String PARK_AND_RIDE_REPLACEMENT = "$2" + PARK_AND_RIDE_SHORT + "$4";
-
-	private static final Pattern UNIVERSITY = Pattern.compile("((^|\\W)(university)(\\W|$))", Pattern.CASE_INSENSITIVE);
-	private static final String UNIVERSITY_REPLACEMENT = "$2" + UNIVERSITY_SHORT + "$4";
-
-	private static final Pattern HIGHWAY_ = Pattern.compile("((^|\\W)(highway|hwy\\.)(\\W|$))", Pattern.CASE_INSENSITIVE);
-	private static final String HIGHWAY_REPLACEMENT = "$2" + HIGHWAY_SHORT + "$4";
 
 	private static final Pattern CLEAN_DASH = Pattern.compile("(^[\\s]*-[\\s]*|[\\s]*-[\\s]*$)", Pattern.CASE_INSENSITIVE);
 
@@ -187,47 +118,23 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	@NotNull
 	@Override
 	public String cleanTripHeadsign(@NotNull String tripHeadsign) {
-		tripHeadsign = CleanUtils.toLowerCaseUpperCaseWords(Locale.ENGLISH, tripHeadsign);
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(STARTS_WITH_RSN_REPLACEMENT);
-		tripHeadsign = GO.matcher(tripHeadsign).replaceAll(GO_REPLACEMENT);
-		tripHeadsign = STATION.matcher(tripHeadsign).replaceAll(STATION_REPLACEMENT);
-		tripHeadsign = PARK_AND_RIDE.matcher(tripHeadsign).replaceAll(PARK_AND_RIDE_REPLACEMENT);
-		tripHeadsign = UNIVERSITY.matcher(tripHeadsign).replaceAll(UNIVERSITY_REPLACEMENT);
-		tripHeadsign = HIGHWAY_.matcher(tripHeadsign).replaceAll(HIGHWAY_REPLACEMENT);
-		tripHeadsign = BUS_TERMINAL.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
-		tripHeadsign = CLEAN_DASH.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
-		int indexOfDash = tripHeadsign.indexOf("- ");
-		if (indexOfDash >= 0) {
-			tripHeadsign = tripHeadsign.substring(0, indexOfDash);
-		}
+		tripHeadsign = BUS_TERMINAL.matcher(tripHeadsign).replaceAll(EMPTY);
+		tripHeadsign = CLEAN_DASH.matcher(tripHeadsign).replaceAll(EMPTY);
 		tripHeadsign = CleanUtils.CLEAN_AND.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AND_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_AT.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
+		tripHeadsign = CleanUtils.cleanBounds(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
-	private static final Pattern GO = Pattern.compile("(^|\\s)(go)($|\\s)", Pattern.CASE_INSENSITIVE);
-	private static final String GO_REPLACEMENT = " ";
-
-	private static final Pattern VIA = Pattern.compile("(^|\\s)(via)($|\\s)", Pattern.CASE_INSENSITIVE);
-	private static final String VIA_REPLACEMENT = " ";
-
-	private static final Pattern POINT = Pattern.compile("((^|\\W)(st|ave|blvd|hwy|rd|dr)\\.(\\W|$))", Pattern.CASE_INSENSITIVE);
-	private static final String POINT_REPLACEMENT = "$2$3$4";
-
-	private static final Pattern DIRECTION = Pattern.compile("((^|\\W)([snew])\\.(\\W|$))", Pattern.CASE_INSENSITIVE);
-	private static final String DIRECTION_REPLACEMENT = "$2$3$4";
-
 	@NotNull
 	@Override
 	public String cleanStopName(@NotNull String gStopName) {
 		gStopName = CleanUtils.CLEAN_AT.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
-		gStopName = VIA.matcher(gStopName).replaceAll(VIA_REPLACEMENT);
-		gStopName = GO.matcher(gStopName).replaceAll(GO_REPLACEMENT);
-		gStopName = POINT.matcher(gStopName).replaceAll(POINT_REPLACEMENT);
-		gStopName = DIRECTION.matcher(gStopName).replaceAll(DIRECTION_REPLACEMENT);
+		gStopName = CleanUtils.cleanBounds(gStopName);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		gStopName = CleanUtils.cleanNumbers(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
@@ -376,7 +283,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	public int getStopId(@NotNull GStop gStop) {
 		//noinspection deprecation
 		final String stopId = gStop.getStopId();
-		if (!Utils.isDigitsOnly(stopId)) {
+		if (!CharUtils.isDigitsOnly(stopId)) {
 			//noinspection IfCanBeSwitch
 			if (SID_UN.equals(stopId)) {
 				return UN_SID;
