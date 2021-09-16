@@ -1,5 +1,7 @@
 package org.mtransit.parser.ca_gtha_go_transit_bus;
 
+import static org.mtransit.commons.StringUtils.EMPTY;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mtransit.commons.CharUtils;
@@ -8,24 +10,26 @@ import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
 import org.mtransit.parser.gtfs.data.GRoute;
-import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GStop;
-import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
-import org.mtransit.parser.mt.data.MRoute;
-import org.mtransit.parser.mt.data.MTrip;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
-
-import static org.mtransit.commons.StringUtils.EMPTY;
 
 // https://www.gotransit.com/en/information-resources/software-developers
 // https://www.gotransit.com/fr/ressources-informatives/dveloppeurs-de-logiciel
 // https://www.gotransit.com/static_files/gotransit/assets/Files/GO_GTFS.zip
 public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
-	public static void main(@Nullable String[] args) {
+	public static void main(@NotNull String[] args) {
 		new GTHAGOTransitBusAgencyTools().start(args);
+	}
+
+	@Nullable
+	@Override
+	public List<Locale> getSupportedLanguages() {
+		return LANG_EN_FR;
 	}
 
 	@Override
@@ -40,8 +44,23 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public long getRouteId(@NotNull GRoute gRoute) {
-		return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
+	public boolean defaultRouteIdEnabled() {
+		return true;
+	}
+
+	@Override
+	public boolean useRouteShortNameForRouteId() {
+		return true;
+	}
+
+	@Override
+	public boolean defaultRouteLongNameEnabled() {
+		return true;
+	}
+
+	@Override
+	public boolean defaultAgencyColorEnabled() {
+		return true;
 	}
 
 	private static final String AGENCY_COLOR = "387C2B"; // GREEN (AGENCY WEB SITE CSS)
@@ -54,26 +73,15 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Nullable
 	@Override
-	public String getRouteColor(@NotNull GRoute gRoute) {
-		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
-			int rsn = Integer.parseInt(gRoute.getRouteShortName());
-			switch (rsn) {
-			// @formatter:off
-			case 11: return "98002e"; // St. Catharines / Niagara on the Lake
-			case 70: return "794500"; //
-			// @formatter:on
-			}
-			throw new MTLog.Fatal("Unexpected route color for %s!", gRoute);
+	public String provideMissingRouteColor(@NotNull GRoute gRoute) {
+		final int rsn = Integer.parseInt(gRoute.getRouteShortName());
+		switch (rsn) {
+		// @formatter:off
+		case 11: return "98002e"; // St. Catharines / Niagara on the Lake
+		case 70: return "794500"; //
+		// @formatter:on
 		}
-		return super.getRouteColor(gRoute);
-	}
-
-	@Override
-	public void setTripHeadsign(@NotNull MRoute mRoute, @NotNull MTrip mTrip, @NotNull GTrip gTrip, @NotNull GSpec gtfs) {
-		mTrip.setHeadsignString(
-				cleanTripHeadsign(gTrip.getTripHeadsign()),
-				gTrip.getDirectionIdOrDefault()
-		);
+		throw new MTLog.Fatal("Unexpected route color for %s!", gRoute);
 	}
 
 	@Override
