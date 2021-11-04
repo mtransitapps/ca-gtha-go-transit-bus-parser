@@ -91,6 +91,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	private static final Pattern STARTS_WITH_LETTER = Pattern.compile("(^([A-Z]) )", Pattern.CASE_INSENSITIVE);
 
+	private static final Pattern SPECIAL_ = Pattern.compile("(^special$)", Pattern.CASE_INSENSITIVE);
+
 	@Nullable
 	@Override
 	public String selectDirectionHeadSign(@Nullable String headSign1, @Nullable String headSign2) {
@@ -106,6 +108,15 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		} else if (headSign2StartsWithLetter) {
 			return headSign1;
 		}
+		final boolean headSign1Special = headSign1 != null && SPECIAL_.matcher(headSign1).matches();
+		final boolean headSign2Special = headSign2 != null && SPECIAL_.matcher(headSign2).matches();
+		if (headSign1Special) {
+			if (!headSign2Special) {
+				return headSign2;
+			}
+		} else if (headSign2Special) {
+			return headSign1;
+		}
 		return null;
 	}
 
@@ -113,6 +124,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String cleanDirectionHeadsign(boolean fromStopName, @NotNull String directionHeadSign) {
 		directionHeadSign = STARTS_WITH_RSN.matcher(directionHeadSign).replaceAll(EMPTY);
+		directionHeadSign = SPECIAL_.matcher(directionHeadSign).replaceAll(EMPTY);
 		return super.cleanDirectionHeadsign(fromStopName, directionHeadSign);
 	}
 
@@ -126,6 +138,7 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	@NotNull
 	@Override
 	public String cleanTripHeadsign(@NotNull String tripHeadsign) {
+		tripHeadsign = CleanUtils.toLowerCaseUpperCaseWords(getFirstLanguage(), tripHeadsign, getIgnoredWords());
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(STARTS_WITH_RSN_REPLACEMENT);
 		tripHeadsign = BUS_TERMINAL.matcher(tripHeadsign).replaceAll(EMPTY);
 		tripHeadsign = CLEAN_DASH.matcher(tripHeadsign).replaceAll(EMPTY);
@@ -136,6 +149,12 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
+	}
+
+	private String[] getIgnoredWords() {
+		return new String[] {
+			"GO",
+		};
 	}
 
 	@NotNull
