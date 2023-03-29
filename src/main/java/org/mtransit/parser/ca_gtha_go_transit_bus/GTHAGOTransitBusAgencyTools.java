@@ -122,23 +122,23 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@NotNull
 	@Override
-	public String cleanDirectionHeadsign(boolean fromStopName, @NotNull String directionHeadSign) {
+	public String cleanDirectionHeadsign(int directionId, boolean fromStopName, @NotNull String directionHeadSign) {
 		directionHeadSign = STARTS_WITH_RSN.matcher(directionHeadSign).replaceAll(EMPTY);
 		directionHeadSign = SPECIAL_.matcher(directionHeadSign).replaceAll(EMPTY);
-		return super.cleanDirectionHeadsign(fromStopName, directionHeadSign);
+		return super.cleanDirectionHeadsign(directionId, fromStopName, directionHeadSign);
 	}
 
-	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[0-9]{2,3}([A-Z]?)(\\s+)- )", Pattern.CASE_INSENSITIVE);
+	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^\\d{2,3}([A-Z]?)(\\s+)- )", Pattern.CASE_INSENSITIVE);
 	private static final String STARTS_WITH_RSN_REPLACEMENT = "$2$3";
 
-	private static final Pattern CLEAN_DASH = Pattern.compile("(^[\\s]*-[\\s]*|[\\s]*-[\\s]*$)", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_DASH = Pattern.compile("(^\\s*-\\s*|\\s*-\\s*$)", Pattern.CASE_INSENSITIVE);
 
 	private static final Pattern BUS_TERMINAL = Pattern.compile("( bus loop| bus terminal| bus term[.]?| terminal| term[.]?)", Pattern.CASE_INSENSITIVE);
 
 	@NotNull
 	@Override
 	public String cleanTripHeadsign(@NotNull String tripHeadsign) {
-		tripHeadsign = CleanUtils.toLowerCaseUpperCaseWords(getFirstLanguage(), tripHeadsign, getIgnoredWords());
+		tripHeadsign = CleanUtils.toLowerCaseUpperCaseWords(getFirstLanguageNN(), tripHeadsign, getIgnoredWords());
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(STARTS_WITH_RSN_REPLACEMENT);
 		tripHeadsign = BUS_TERMINAL.matcher(tripHeadsign).replaceAll(EMPTY);
 		tripHeadsign = CLEAN_DASH.matcher(tripHeadsign).replaceAll(EMPTY);
@@ -152,8 +152,8 @@ public class GTHAGOTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private String[] getIgnoredWords() {
-		return new String[] {
-			"GO",
+		return new String[]{
+				"GO",
 		};
 	}
 
